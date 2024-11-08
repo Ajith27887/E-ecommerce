@@ -3,8 +3,11 @@
 
     .overlay-container{
         position: relative;
-        img{
+
+        img {
+            display: block;
             position: relative;
+            width: 100%;
         }
     }
     
