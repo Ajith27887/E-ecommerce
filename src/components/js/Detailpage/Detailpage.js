@@ -69,8 +69,7 @@ function Detailpage(props = {}) {
 										<div className='mt-2'> PrepTimeMinutes : {prepTimeMinutes}</div>
 									</Col>
 									</div>
-										<CartButtons/>
-								
+									<CartButtons {...props}/>
 								</Row>
 							</Container>
 						</Col>
