@@ -1,0 +1,40 @@
+.modal-90w{
+    width: 90% !important;
+    max-width: none !important;
+}
+.modal-content {
+    background-color:black !important;
+}
+.modal-title-custom {
+    color: white !important;
+    font-family: Arial, sans-serif;
+    font-size: 24px !important;
+    font-weight: bold !important;
+}
+.modal-header  {
+    border: none !important;
+    .btn-close{
+        background-color: white !important;
+    }
+}
+.modal-body{
+    color: white;
+}
+.meal-type{
+    color: red;
+    opacity: 0.7;
+    font-weight: bolder !important;
+}
+.rating{
+    display: flex;
+    align-items: center;
+}
+.posterimg{
+    border-radius: 20px;
+}
+.PrizeDetails{
+    background-color: white;
+    border-radius: 20px;
+    color: black;
+    padding: 20px;
+}

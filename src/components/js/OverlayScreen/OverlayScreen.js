@@ -1,15 +1,16 @@
+import { useState, useContext } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 import { IconContext } from "react-icons";
 import Detailpage from '../Detailpage/Detailpage'
 
 import './OverlayScreen.scss'
-import { useState } from "react";
-
-
+import Button from 'react-bootstrap/Button';
+import { ModalContext } from "../Provider/ModalProvider";
 
 const OverlayScreen = (props = {}) => {
     const {tags = '', name = '', rating = ''} = props,
         [detail, setDetail] = useState(false),
+        {show, setShow} = useContext(ModalContext),
         handleHover = () => {
             setDetail(true);
         };
@@ -20,16 +21,16 @@ const OverlayScreen = (props = {}) => {
       >
             <div className="overlay-screen">
                 <div className='badges-container'>
-                    <div>
-                        {tags.map(data => (
-                            <div className='badges'>{data}</div>
-                        ))}
+                    <div className="badges">
+                        {tags[0]}
                     </div>
                     <div className='plus'>
-                        <CiCirclePlus onClick={handleHover} style={{fontWeight: 'bolder'}}/>
+                        <Button onClick={() => setShow(true)}>
+                            <CiCirclePlus onClick={handleHover}  style={{fontWeight: 'bolder'}}/>
+                        </Button>
                     </div>
                 </div>
-            {detail && <Detailpage/>}
+            {detail && <Detailpage {...props} show={show} setShow={setShow}/>}
             </div>
         </IconContext.Provider>
     )

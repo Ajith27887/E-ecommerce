@@ -4,6 +4,7 @@ import RecipesListing from './RecipesListing/RecipesListing';
 import axios from "axios"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 function App() {
 
 	const [data, setData] = useState([]);
@@ -23,9 +24,9 @@ function App() {
 	},[]);	
 
   return (
-    <div className="App">
-		<RecipesListing {...data} />
-    </div>
+		<div className="App">
+			<RecipesListing {...data} />
+		</div>
   );
 }
 

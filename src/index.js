@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from '../src/components/js/App.js';
 import reportWebVitals from './reportWebVitals';
+import ModalProvider from './components/js/Provider/ModalProvider.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <ModalProvider>
+      <App />
+    </ModalProvider>
   </React.StrictMode>
 );
 
