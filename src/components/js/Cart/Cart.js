@@ -8,6 +8,9 @@ import '../Cart/Cart.scss'
 const Cart  = () =>{
 
     const { cartData } = useContext(CartContext);
+    // const filterData = cartData.map((crr, index, arr) => (
+
+    // ))
     useEffect(() => {
         console.log('cartData', cartData);
     },[cartData])
