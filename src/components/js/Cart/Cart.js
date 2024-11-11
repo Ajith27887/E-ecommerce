@@ -20,13 +20,19 @@ const Cart  = () =>{
             <Container fluid>
                 <Row>
                     <Col>
-                        {cartData && cartData.map(data => (
-                            <div className="CarWrapper">
-                                <div className="mt-2">
-                                    <CartDetails {...data}/>
+                        {cartData && cartData.length > 0 ? (
+                                cartData.map((data, index) => (
+                                    <div className="CarWrapper" key={index}>
+                                        <div className="mt-2">
+                                            <CartDetails {...data} />
+                                        </div>
+                                    </div>
+                                ))
+                            ) : (
+                                <div>
+                                    <CartDetails />
                                 </div>
-                            </div>
-                        ))}
+                        )}
                     </Col>
                 </Row>
             </Container>

@@ -1,4 +1,8 @@
 import './CartDetails.scss'
+import { useNavigate } from "react-router-dom"; 
+
+
+
 
 const CartDetails = (props = {}) =>{
         const {name = '',image = '', rating = '', reviewCount = '', prepTimeMinutes = '' , mealType = [], ingredients = '', cuisine = '', caloriesPerServing = ''} = props,
