@@ -1,13 +1,18 @@
-.overlay-screen{
+.overlay-screen {
     position: absolute;
     top: 0%;
     bottom: 0%;
     left: 0%;
     background-color: rgba(64, 64, 64, 0.5);
     width: 100%;
+    transition: background-color 0.3s ease;
 
-    .badges-container{
-        .badges{
+    &:hover {
+        background-color: rgba(64, 64, 64, 0.7);
+    }
+
+    .badges-container {
+        .badges {
             position: absolute;
             top: 10px;
             left: 78%;
@@ -20,15 +25,14 @@
             border-radius: 20px;
         }
 
-        .plus{
+        .plus {
             position: absolute;
             top: 60%;
             left: 50%;
             bottom: 0%;
             transform: translate(-50%, -50%);
-            width: 100%;
 
-            button{
+            button {
                 background: none;
                 border: none;
             }

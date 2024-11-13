@@ -3,6 +3,7 @@ import { Button, Alert } from "react-bootstrap";
 import { BsCartCheckFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom"; 
 import { CartContext } from '../Provider/CartProvider';
+import { FaMinus } from "react-icons/fa"; 
 
 
 import '../CartButtons/CartButtons.scss';
@@ -27,7 +28,8 @@ function  CartButtons (props = {}) {
 
     return(
          <div className="mt-2">
-            <Button onClick={handleCart}> Add to Cart </Button>
+            <Button onClick={handleCart} > Add to Cart </Button>
+            {cartData.length >= 1 && <button className="minusbtn"  style={{ backgroundColor: 'red', color: 'white' }}><FaMinus style={{ width : "20px", height : "20px" }}/></button>}
             <span className="mx-2 cart" onClick={handlecartredirect}>
                 <BsCartCheckFill style={{width : '20px'}}/>
                 <span className="cartnum mx-1">

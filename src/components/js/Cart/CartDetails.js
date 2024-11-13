@@ -7,30 +7,26 @@ import './CartDetails.scss'
 
 const CartDetails = (props = {}) =>{
         const {name = '',image = '', caloriesPerServing = ''} = props,
-            Tax = caloriesPerServing * (5 / 100),
-            { cartData } = useContext(CartContext);
-            
+            { itemCounts} = useContext(CartContext);
 
+            console.log(itemCounts, "item");
             
         return (
             <div>
-                <div className="mt-5">
+                <div className="mt-2">
                     <div className="container CartList">
                         <div className="row">
-                            <div className="col-3 px-0">
+                            <div className="col-1 px-0">
                                 <img style={{width : '100%'}} src={image}/>
                             </div>
-                            <div className="col-9 p-3 bold">
+                            <div className="col-11 p-3 Bill-container d-flex bold align-items-center justify-content-between">
+                                <div className='Bill-Text'>
+                                    <h4> Food Prize : </h4>
+                                    <span>X {itemCounts[props.id] || 0}</span>
+                                </div>
                                 <h2>{name}</h2>
-                                <div className='Bill-container'>
-                                    <div className='Bill-Text'>
-                                        <h4> Food Prize : </h4>
-                                        <h4>Tax : </h4>
-                                    </div>
-                                    <div>
-                                        <h6> {caloriesPerServing} RS</h6>
-                                        <p> {Tax} </p>
-                                    </div>
+                                <div>
+                                    <h6> {caloriesPerServing * itemCounts[props.id] } RS</h6>
                                 </div>
                             </div>
                         </div>

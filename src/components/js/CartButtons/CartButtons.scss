@@ -18,4 +18,28 @@
         font-size: 12px;
         text-align: center;
     }
+
+}
+
+.minusbtn {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    margin-left: 10px;
+
+    &:hover {
+        background-color: darkred;
+        transform: scale(1.05);
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
 }

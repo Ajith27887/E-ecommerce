@@ -10,14 +10,14 @@ import CartDetails from '../Cart/CartDetails';
 import '../Cart/Cart.scss'
 const Cart  = () =>{
 
-    const { cartData } = useContext(CartContext);
-    const filterData = cartData.filter((crr, index) => cartData.indexOf(crr) === index);
-const     [total, setTotal] = useState(0);
-
-
+    const { cartData } = useContext(CartContext),
+        filterData = cartData.filter((crr, index) => cartData.indexOf(crr) === index),
+        [total, setTotal] = useState(0);  
+      
     useEffect(() => {
         const Total = cartData.reduce((acc, data) => acc + data.caloriesPerServing, 0)
         setTotal(Total)
+        
     }, [cartData]);
     
     return(
