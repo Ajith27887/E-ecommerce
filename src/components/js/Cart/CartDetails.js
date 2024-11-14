@@ -1,16 +1,27 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { CartContext } from '../Provider/CartProvider';
-// import { Container, Row, Col } from 'react-bootstrap'
+import { FaMinus } from "react-icons/fa"; 
+
 import './CartDetails.scss'
-
-
 
 const CartDetails = (props = {}) =>{
         const {name = '',image = '', caloriesPerServing = ''} = props,
-            { itemCounts} = useContext(CartContext);
+            { itemCounts, setItemCounts,filterData } = useContext(CartContext),
+            handleMinus = () =>{
+                setItemCounts(prevItemCounts => {
+                    const updatedItemCounts = { ...prevItemCounts };
+                    if (updatedItemCounts[props.id]) {
+                        updatedItemCounts[props.id] -= 1;
+                        if(updatedItemCounts[props.id] === 0){
+                            filterData.filter((crr) => {
+                                return crr.id !== props.id
+                            }); 
+                        }
+                    }
+                    return updatedItemCounts;
+                });
+            }
 
-            console.log(itemCounts, "item");
-            
         return (
             <div>
                 <div className="mt-2">
@@ -22,19 +33,23 @@ const CartDetails = (props = {}) =>{
                             <div className="col-11 p-3 Bill-container d-flex bold align-items-center justify-content-between">
                                 <div className='Bill-Text'>
                                     <h4> Food Prize : </h4>
-                                    <span>X {itemCounts[props.id] || 0}</span>
                                 </div>
                                 <h2>{name}</h2>
-                                <div>
-                                    <h6> {caloriesPerServing * itemCounts[props.id] } RS</h6>
+                                <div className="d-flex align-items-center">
+                                    <h6> <span className='multiple'>  {itemCounts[props.id] || 0}  x</span>   {caloriesPerServing * itemCounts[props.id] } RS</h6>
+                                    <span>
+                                    {itemCounts && (
+                                        <button onClick={handleMinus} className="minusbtn"  style={{ backgroundColor: 'red', color: 'white' }}>
+                                            <FaMinus style={{ width : "20px", height : "20px" }}/>
+                                        </button>
+                                    )}
+                                    </span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         )
 }
 
