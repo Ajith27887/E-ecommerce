@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useEffect } from "react";
 import { useState } from "react";
 
 export const CartContext = createContext();
@@ -7,8 +7,12 @@ const CartProvider = ({ children }) => {
     const [cartData, setCartData] = useState([]);
     const [cartCount, setCartCount] = useState(0);
     const [itemCounts, setItemCounts] = useState({});
+    const [filterData, setFilterData] = useState([]);
 
-    const filterData = cartData.filter((crr, index) => cartData.indexOf(crr) === index);
+    const filterDataContainer = cartData.filter((crr, index) => cartData.indexOf(crr) === index);
+    useEffect(() =>{
+        setFilterData(filterDataContainer);
+    },[cartData])
 
     const addToCart = (item) => {
         setCartData([...cartData, item]);
@@ -24,12 +28,10 @@ const CartProvider = ({ children }) => {
             }
             return updatedItemCounts;
         });
-
-        
     };
 
     return(
-        <CartContext.Provider value={{cartData, setCartData,setItemCounts, filterData, cartCount, addToCart, itemCounts }}>
+        <CartContext.Provider value={{cartData, setCartData,setItemCounts, setFilterData,filterData, cartCount, addToCart, itemCounts }}>
             {children}
         </CartContext.Provider>
     )

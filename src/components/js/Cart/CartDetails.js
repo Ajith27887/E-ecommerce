@@ -1,4 +1,5 @@
-import { useContext } from 'react';
+import { useContext , useCallback} from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../Provider/CartProvider';
 import { FaMinus } from "react-icons/fa"; 
 
@@ -6,21 +7,20 @@ import './CartDetails.scss'
 
 const CartDetails = (props = {}) =>{
         const {name = '',image = '', caloriesPerServing = ''} = props,
-            { itemCounts, setItemCounts,filterData } = useContext(CartContext),
-            handleMinus = () =>{
+            navigate = useNavigate(),
+            { itemCounts, setItemCounts,filterData,setFilterData, cartData } = useContext(CartContext),
+            handleMinus = useCallback (() =>{
                 setItemCounts(prevItemCounts => {
                     const updatedItemCounts = { ...prevItemCounts };
                     if (updatedItemCounts[props.id]) {
                         updatedItemCounts[props.id] -= 1;
                         if(updatedItemCounts[props.id] === 0){
-                            filterData.filter((crr) => {
-                                return crr.id !== props.id
-                            }); 
+                            setFilterData(filterData.filter(crr => crr.id !== props.id));                             
                         }
                     }
                     return updatedItemCounts;
                 });
-            }
+            },[filterData])
 
         return (
             <div>
