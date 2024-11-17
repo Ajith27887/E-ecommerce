@@ -3,20 +3,18 @@ import { Button, Alert } from "react-bootstrap";
 import { BsCartCheckFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom"; 
 import { CartContext } from '../Provider/CartProvider';
+import { motion } from "motion/react"
 
 
 import '../CartButtons/CartButtons.scss';
-import axios from "axios";
 
 function  CartButtons (props = {}) {
     const { cartCount, addToCart,setCartCount, filterData} = useContext(CartContext),
         navigate = useNavigate(),
         [alert, setAlert] = useState(false),
-        [coolDrinks, setCoolDrinks] = useState([]);
-
-    const handleCart = useCallback (() =>{
-        addToCart(props)
-    }, [props, addToCart])
+        handleCart = useCallback (() =>{
+            addToCart(props)
+        }, [props, addToCart])
     
     const handlecartredirect =  useCallback (() => {
         if (cartCount) {
@@ -27,24 +25,16 @@ function  CartButtons (props = {}) {
         }
     }, [cartCount]);
 
-    useEffect(() =>{
-        ( async()=> {
-            try{
-            const response = await axios.get('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic')
-            setCoolDrinks(response.data.drinks);
-            // console.log(response.data);
-            
-        }catch(error){
-            console.log(error);
-            
-        }})()
-    },[])
-
-    
-
     return(
          <div className="mt-2">
-            <Button onClick={handleCart} > Add to Cart </Button>
+            <motion.div
+                className="box"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+                <Button onClick={handleCart} > Add to Cart </Button>
+            </motion.div>
             <span className="mx-2 cart" onClick={handlecartredirect}>
                 <BsCartCheckFill style={{width : '20px'}}/>
                 <span className="cartnum mx-1">
@@ -57,11 +47,6 @@ function  CartButtons (props = {}) {
                         <Alert.Heading>Don't forget to choose a delicious food item!</Alert.Heading>
                     </Alert>
                 )}  
-            </div>
-            <div className="cool-drinks">
-                {coolDrinks.map(data => (
-                    <img src={data.strDrinkThumb}  style={{width : '100px'}}/>
-                ))}
             </div>
         </div>
     )

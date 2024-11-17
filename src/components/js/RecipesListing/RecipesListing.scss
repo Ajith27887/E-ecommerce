@@ -3,12 +3,41 @@
 
     .overlay-container{
         position: relative;
+        width: 100%;
 
-        img {
-            display: block;
-            position: relative;
+        .img{
             width: 100%;
+            height: 100%;
+            max-width: 100%;
+            border-radius: 20px;
+
+        }
+
+        .recipes{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            object-fit: cover;
+            border-radius: 20px;
         }
     }
     
+}
+
+
+.racipes-image {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 20px;
+
+    }
 }

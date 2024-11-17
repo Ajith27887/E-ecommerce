@@ -6,7 +6,7 @@ import { CiStar } from "react-icons/ci";
 import { FaRupeeSign } from "react-icons/fa";
 import CartButtons from '../CartButtons/CartButtons'
 import { MdFastfood } from "react-icons/md";
-
+import axios from 'axios';
 
 import './Detailpage.scss'
 
@@ -15,13 +15,26 @@ function Detailpage(props = {}) {
 	let element = [];
 	const {name = '',image = '', rating = '', reviewCount = '', prepTimeMinutes = '' , mealType = [], ingredients = '', cuisine = '', caloriesPerServing = ''} = props,
     	{show, setShow} = useContext(ModalContext),
-		ratingLenght = Math.floor(rating);
+		ratingLenght = Math.floor(rating),
+		[coolDrinks, setCoolDrinks] = useState([]);
 		const countingNum = () =>{
 			for (let i = 0; i < ratingLenght; i++) {
 				element.push(i + 1)
 			}
 		}
 		countingNum();
+
+		useEffect(() =>{
+			( async()=> {
+				try{
+				const response = await axios.get('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic')
+				setCoolDrinks(response.data.drinks);
+
+			}catch(error){
+				console.log(error);
+				
+			}})()
+		},[])
 		
 
   return (
@@ -70,8 +83,18 @@ function Detailpage(props = {}) {
 									</Col>
 									</div>
 									<CartButtons {...props}/>
+									
 								</Row>
 							</Container>
+						</Col>
+					</Row>
+					<Row>
+						<Col>
+							<div className="cool-drinks mt-5">
+								{coolDrinks.map(data => (
+									<img src={data.strDrinkThumb}  style={{width : '100px'}}/>
+								))}
+							</div>
 						</Col>
 					</Row>
 				</Container>

@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import OverlayScreen from '../OverlayScreen/OverlayScreen'
-
 import '../RecipesListing/RecipesListing.scss'
 
 const RecipesListing = (props = {}) => {
@@ -18,10 +17,11 @@ const RecipesListing = (props = {}) => {
                         <div className="recipes-container">
                             <div className="row">
                                 {recipes.map(data => (
-                                    <div key={data.id} className="col-4">
+                                    <div key={data.id} className="mt-4 my-5 col-6 col-md-4 col-lg-3">
                                         <div className='racipes-image'>
                                             <div className='overlay-container'>
-                                                <img src={data.image} onMouseEnter={() => handlehover(data.id)} className="mt-2 recipes" style={{width : '100%'}}/>
+                                                <img src='https://via.placeholder.com/300x400' style={{width : "100%"}}/>
+                                                <img src={data.image} onMouseEnter={() => handlehover(data.id)} className="recipes" style={{width : '100%'}}/>
                                                 {hover === data.id && <OverlayScreen {...data}/>}
                                             </div>
                                         </div>
