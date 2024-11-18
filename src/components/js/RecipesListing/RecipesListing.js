@@ -4,7 +4,7 @@ import '../RecipesListing/RecipesListing.scss'
 
 const RecipesListing = (props = {}) => {
     const {recipes = [], limit = '', total = '' } = props,
-        [hover, setHover] = useState(false),
+        [hover, setHover] = useState(0),
         handlehover = (id) => {
             setHover(id);
         }

@@ -27,14 +27,7 @@ function  CartButtons (props = {}) {
 
     return(
          <div className="mt-2">
-            <motion.div
-                className="box"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            >
-                <Button onClick={handleCart} > Add to Cart </Button>
-            </motion.div>
+            <Button onClick={handleCart} > Add to Cart </Button>
             <span className="mx-2 cart" onClick={handlecartredirect}>
                 <BsCartCheckFill style={{width : '20px'}}/>
                 <span className="cartnum mx-1">
