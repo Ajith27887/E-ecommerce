@@ -34,18 +34,17 @@ const EachCardMODAL = (props = {}) => {
                             {
                                 element.map((_, index) => (
                                     <div>
-                                        <CiStar  key={index} style={{width : "20px", height : '100%', color: 'black'}}/>
+                                        <CiStar  key={index} style={{width : "20px", height : '100%', color: 'white'}}/>
                                     </div>
                                 ))
                             }
                             <div>  ({reviewCount})</div>
                         </div>}
-                        <div className='mt-2'>Price : {caloriesPerServing} {<FaRupeeSign style={{width : '10px', height : '20px'}}/>}</div>
-                        <div className='mt-2'> PrepTimeMinutes : {prepTimeMinutes}</div>
+                        <div className='mt-2'> Price: {caloriesPerServing} <FaRupeeSign style={{ width: '10px', height: '20px' }} /></div>    
+                    <div className='mt-2'> PrepTimeMinutes : {prepTimeMinutes}</div>
                     </Col>
                     </div>
                     <CartButtons {...props}/>
-                    
                 </Row>
             </Container>
         </Col>

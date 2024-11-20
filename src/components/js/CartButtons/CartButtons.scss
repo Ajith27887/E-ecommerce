@@ -1,24 +1,31 @@
 .cart{
-    width: 20px;
-    padding: 10px;
-    background-color: rgb(192,192,192);
-    border-radius: 10px;
-    position: relative;
     cursor: pointer;
+    text-align: center;
 
     .cartnum{
-        position: absolute;
-        right: -50%;
-        background-color: red;
-        color: white;
-        padding: 5px;
-        border-radius: 40%;
-        width: 30px;
-        height: 30px;
-        font-size: 12px;
+        font-size: 20px;
         text-align: center;
-    }
+        color: black;
 
+        &.vibration{
+            animation: vibrate 0.5s;
+            animation-iteration-count: 1;
+        }
+    }
+}
+
+@keyframes vibrate {
+    0% { transform: rotate(0deg); }
+    10% { transform: rotate(-5deg); }
+    20% { transform: rotate(5deg); }
+    30% { transform: rotate(0deg); }
+    40% { transform: rotate(5deg); }
+    50% { transform: rotate(-5deg); }
+    60% { transform: rotate(0deg); }
+    70% { transform: rotate(-5deg); }
+    80% { transform: rotate(5deg); }
+    90% { transform: rotate(0deg); }
+    100% { transform: rotate(-5deg); }
 }
 
 .minusbtn {
@@ -42,4 +49,8 @@
     &:active {
         transform: scale(0.98);
     }
+}
+
+.drink-container{
+    box-shadow: rgb(255, 255, 255) 0px 8px 24px;
 }
