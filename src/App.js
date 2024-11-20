@@ -1,6 +1,7 @@
 import './App.css';
 import {useEffect, useState} from 'react';
 import RecipesListing from './components/js/RecipesListing/RecipesListing';
+import Welcome from "./components/js/Welcome/Welcome"
 import axios from "axios"
 import { BrowserRouter as Router,Route,Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -29,7 +30,8 @@ function App() {
 	<Router>
 		<div className="App">
 			<Routes>
-				<Route path='/' element={<RecipesListing {...data}/>}/>
+				<Route path='/' element={<Welcome/>} />
+				<Route path='/Home' element={<RecipesListing {...data}/>}/>
 				<Route path="/cart" element={<Cart/>} />
 			</Routes>
 		</div>
