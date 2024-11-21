@@ -13,16 +13,23 @@ const Cart = () => {
   useEffect(() => {
     const Total = cartData.reduce((acc, data) => acc + data.caloriesPerServing,0);
     setTotal(Total);
-	
   }, [cartData]);
 
   useEffect(() =>{
-	if (filterData.length === 0) {
-		setCartData([])
-		setFilterData([]);
-		navigate('/')		
-	}
+    if (filterData.length === 0) {
+      // setCartData([])
+      // setFilterData([]);
+      navigate('/Home')		
+    }
   }, [filterData,setCartData, navigate])
+
+  useEffect(() =>{
+    localStorage.setItem("names", JSON.stringify(filterData));
+  },[filterData])
+  const local = localStorage.getItem('names');
+  const localArr = JSON.parse(local);
+  console.log(local, "local");
+  
   
 
   return (
@@ -40,8 +47,8 @@ const Cart = () => {
       <Container fluid>
         <Row>
           <Col>
-            {cartData &&  filterData && filterData.length > 0 ? (
-              filterData.map((data, index) => (
+            {cartData && local &&  filterData && filterData.length > 0 ? (
+              localArr.map((data, index) => (
                 <div className="CarWrapper" key={index}>
                   <div className="mt-2">
                     <CartDetails {...data} />
