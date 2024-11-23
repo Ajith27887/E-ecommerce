@@ -1,56 +1,79 @@
-.cart{
-    cursor: pointer;
+.cart {
+  cursor: pointer;
+  text-align: center;
+
+  .cartnum {
+    font-size: 20px;
     text-align: center;
+    color: black;
 
-    .cartnum{
-        font-size: 20px;
-        text-align: center;
-        color: black;
-
-        &.vibration{
-            animation: vibrate 0.5s;
-            animation-iteration-count: 1;
-        }
+    &.vibration {
+      animation: vibrate 0.5s;
+      animation-iteration-count: 1;
     }
+  }
 }
 
 @keyframes vibrate {
-    0% { transform: rotate(0deg); }
-    10% { transform: rotate(-5deg); }
-    20% { transform: rotate(5deg); }
-    30% { transform: rotate(0deg); }
-    40% { transform: rotate(5deg); }
-    50% { transform: rotate(-5deg); }
-    60% { transform: rotate(0deg); }
-    70% { transform: rotate(-5deg); }
-    80% { transform: rotate(5deg); }
-    90% { transform: rotate(0deg); }
-    100% { transform: rotate(-5deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(-5deg);
+  }
+  20% {
+    transform: rotate(5deg);
+  }
+  30% {
+    transform: rotate(0deg);
+  }
+  40% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(-5deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  70% {
+    transform: rotate(-5deg);
+  }
+  80% {
+    transform: rotate(5deg);
+  }
+  90% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-5deg);
+  }
 }
 
 .minusbtn {
-    background-color: red;
-    color: white;
-    font-weight: bold;
-    padding: 10px 10px;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    margin-left: 10px;
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  padding: 10px 10px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  margin-left: 10px;
 
-    &:hover {
-        background-color: darkred;
-        transform: scale(1.05);
-        box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
-    }
+  &:hover {
+    background-color: darkred;
+    transform: scale(1.05);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
+  }
 
-    &:active {
-        transform: scale(0.98);
-    }
+  &:active {
+    transform: scale(0.98);
+  }
 }
 
-.drink-container{
-    box-shadow: rgb(255, 255, 255) 0px 8px 24px;
+.drink-container {
+  position: relative;
 }

@@ -4,33 +4,34 @@ import { Container, Row, Col, Badge } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import CartDetails from "../Cart/CartDetails";
 
-
 import "../Cart/Cart.scss";
 const Cart = () => {
-  const { cartData, filterData , total,setCartData, setTotal, setFilterData} = useContext(CartContext),
-	navigate = useNavigate();
+  const { cartData, filterData, total, setCartData, setTotal, setFilterData } =
+      useContext(CartContext),
+    navigate = useNavigate();
 
   useEffect(() => {
-    const Total = cartData.reduce((acc, data) => acc + data.caloriesPerServing,0);
-    setTotal(Total);
-  }, [cartData]);
-
-  useEffect(() =>{
     if (filterData.length === 0) {
-      // setCartData([])
-      // setFilterData([]);
-      navigate('/Home')		
+      setCartData([]);
+      setFilterData([]);
+      navigate("/Home");
     }
-  }, [filterData,setCartData, navigate])
+  }, [filterData, setCartData, navigate]);
 
-  useEffect(() =>{
+  useEffect(() => {
     localStorage.setItem("names", JSON.stringify(filterData));
-  },[filterData])
-  const local = localStorage.getItem('names');
+  }, [filterData]);
+  const local = localStorage.getItem("names");
   const localArr = JSON.parse(local);
   console.log(local, "local");
-  
-  
+
+  useEffect(() => {
+    const Total = cartData.reduce(
+      (acc, data) => acc + data.caloriesPerServing,
+      0
+    );
+    setTotal(Total);
+  }, [cartData]);
 
   return (
     <div>
@@ -47,7 +48,7 @@ const Cart = () => {
       <Container fluid>
         <Row>
           <Col>
-            {cartData && local &&  filterData && filterData.length > 0 ? (
+            {cartData && local && filterData && filterData.length > 0 ? (
               localArr.map((data, index) => (
                 <div className="CarWrapper" key={index}>
                   <div className="mt-2">
