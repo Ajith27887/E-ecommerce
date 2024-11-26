@@ -20,14 +20,7 @@ function CartButtons(props = {}) {
     [coolDrinks, setCoolDrinks] = useState([]),
     // [hoveredDrink, setHoveredDrink] = useState(null),  WIP....
     [animateScooty, setAnimateScooty] = useState(false),
-    [alertTime, setAlertTime] = useState(false),
-    handleCart = useCallback(() => {
-      setAnimateScooty(true);
-      setTimeout(() => {
-        setAnimateScooty(false);
-      }, 2000);
-      setTimeout(() => addToCart(props));
-    }, [props, addToCart]);
+    [alertTime, setAlertTime] = useState(false);
 
   const handlecartredirect = useCallback(() => {
     if (cartCount) {
@@ -64,16 +57,16 @@ function CartButtons(props = {}) {
 
   const chunkedCoolDrinks = chunkArray(coolDrinks, 4);
 
-//   const handleHover = (id) => {
-//     setHoveredDrink(id);                 WIP....
-//   };
+  //   const handleHover = (id) => {
+  //     setHoveredDrink(id);                 WIP....
+  //   };
 
   return (
     <div className="mt-2">
       <div>
         <div className="d-flex">
           <div>
-            <Button onClick={handleCart}>
+            <Button>
               <MdDeliveryDining
                 className={`scooty-icon mx-2 ${animateScooty ? "animate" : ""}`}
               />
@@ -126,11 +119,9 @@ function CartButtons(props = {}) {
                     <Row>
                       {chunk.map((data, idx) => (
                         <Col key={idx} xs={3}>
-                          <div
-                            className="drink-container"
-                            >
+                          <div className="drink-container">
                             <img
-                            //   onMouseEnter={() => handleHover(chunk.id)}
+                              //   onMouseEnter={() => handleHover(chunk.id)}
                               src={data.strDrinkThumb}
                               style={{ width: "100%" }}
                               key={idx}
