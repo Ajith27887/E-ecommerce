@@ -8,6 +8,7 @@ const CartProvider = ({ children }) => {
      [cartCount, setCartCount] = useState(0),
      [itemCounts, setItemCounts] = useState({}),
      [filterData, setFilterData] = useState([]),
+     [show, setShow] = useState(false),
      [total, setTotal] = useState(0);
 
 
@@ -33,7 +34,7 @@ const CartProvider = ({ children }) => {
     };
 
     return(
-        <CartContext.Provider value={{cartData,setTotal,total,setCartCount, setCartData,setItemCounts, setFilterData,filterData, cartCount, addToCart, itemCounts }}>
+        <CartContext.Provider value={{cartData,setTotal,show, setShow,total,setCartCount, setCartData,setItemCounts, setFilterData,filterData, cartCount, addToCart, itemCounts }}>
             {children}
         </CartContext.Provider>
     )

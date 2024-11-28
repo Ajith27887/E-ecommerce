@@ -4,6 +4,7 @@ import { IconContext } from "react-icons";
 import { CartContext } from "../Provider/CartProvider";
 import { GoPlus } from "react-icons/go";
 import Detailpage from "../Detailpage/Detailpage";
+import { MdExposurePlus1 } from "react-icons/md";
 
 import "./OverlayScreen.scss";
 import Button from "react-bootstrap/Button";
@@ -13,12 +14,15 @@ const OverlayScreen = (props = {}) => {
   const { tags = "", name = "", rating = "" } = props,
     { itemCounts, setItemCounts, filterData, setFilterData, setTotal, total } =
       useContext(CartContext),
+    [anie, setAnie] = useState(false),
     { addToCart } = useContext(CartContext),
     [detail, setDetail] = useState(false),
     { show, setShow } = useContext(ModalContext),
     handleCart = useCallback(() => {
       setTimeout(() => addToCart(props));
-    }, [props, addToCart]);
+      setAnie(true);
+    }, [setAnie, setTimeout, addToCart]);
+
   const handleMinus = useCallback(() => {
     setItemCounts((prevItemCounts) => {
       const updatedItemCounts = { ...prevItemCounts };
@@ -47,9 +51,14 @@ const OverlayScreen = (props = {}) => {
               onClick={handleCart}
               style={{ width: "20px", color: "white" }}
             />
+            <div
+              className={anie ? "plusanimie" : ""}
+              style={{ display: anie ? "block" : "none" }}
+            >
+              <MdExposurePlus1 style={{ width: "20px", color: "white" }} />
+            </div>
           </div>
           <div className="badges">{tags[0]}</div>
-
           <div>
             {" "}
             {itemCounts && (

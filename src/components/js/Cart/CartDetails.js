@@ -2,6 +2,7 @@ import { useContext, useCallback, useEffect } from "react";
 import { CartContext } from "../Provider/CartProvider";
 import { FaMinus } from "react-icons/fa";
 import "./CartDetails.scss";
+import { TbExposureMinus1 } from "react-icons/tb";
 
 const CartDetails = (props = {}) => {
   const { name = "", image = "", caloriesPerServing = "" } = props,
@@ -19,41 +20,29 @@ const CartDetails = (props = {}) => {
         }
         return updatedItemCounts;
       });
-    }, [filterData, setFilterData, total, setTotal]);
+    }, [filterData, setFilterData, setItemCounts, total, setTotal]);
 
   return (
     <div>
       <div className="mt-2">
         <div className="container CartList">
           <div className="row">
-            <div className="col-1 px-0">
-              <img style={{ width: "100%" }} src={image} />
-            </div>
-            <div className="col-11 p-3 Bill-container d-flex bold align-items-center justify-content-between">
+            <div className="col-12 p-3 Bill-container d-flex bold align-items-center justify-content-between">
               <div className="Bill-Text">
-                <h4> Food Prize : </h4>
+                <h6>{name}</h6>
               </div>
-              <h2>{name}</h2>
               <div className="d-flex align-items-center">
                 <h6>
                   {" "}
-                  <span className="multiple">
-                    {" "}
+                  <span className="multiple mx-3">
                     {itemCounts[props.id] || 0} x
                   </span>{" "}
                   {caloriesPerServing * itemCounts[props.id]} RS
+                  <TbExposureMinus1
+                    className="mx-2"
+                    onClick={handleMinus}
+                  ></TbExposureMinus1>
                 </h6>
-                <span>
-                  {itemCounts && (
-                    <button
-                      onClick={handleMinus}
-                      className="minusbtn"
-                      style={{ backgroundColor: "red", color: "white" }}
-                    >
-                      <FaMinus style={{ width: "20px", height: "20px" }} />
-                    </button>
-                  )}
-                </span>
               </div>
             </div>
           </div>

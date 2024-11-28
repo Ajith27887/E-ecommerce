@@ -30,7 +30,26 @@
     }
 
     .plus {
+      position: relative;
       cursor: pointer;
+
+      @keyframes moveUpAndDisappear {
+        0% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100px);
+          opacity: 0;
+        }
+      }
+
+      .plusanimie {
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        animation: moveUpAndDisappear 2s forwards;
+      }
     }
   }
 }
