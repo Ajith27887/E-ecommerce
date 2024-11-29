@@ -1,19 +1,19 @@
-@import '../style/variables';
+@import "../style/variables";
 
-.CartList{
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+.CartList {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  background-color: rgba(30, 30, 30, 0.9);
+  .Bill-container {
+    border-radius: 10px;
 
-    .Bill-container{
-        border-radius: 10px;
-
-        .Bill-Text{
-            text-align: left;
-        }
-        .multiple{
-            color: white;
-            padding: 10px;
-            margin-left: 5px;
-            background: $secondary-color;
-        }
+    .Bill-Text {
+      text-align: left;
     }
+    .multiple {
+      color: white;
+      padding: 10px;
+      margin-left: 5px;
+      background: $secondary-color;
+    }
+  }
 }

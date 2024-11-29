@@ -1,33 +1,45 @@
-import { useContext, useCallback, useEffect } from "react";
+import { useContext, useCallback } from "react";
 import { CartContext } from "../Provider/CartProvider";
 import { FaMinus } from "react-icons/fa";
+import { Badge, Button } from "react-bootstrap";
 import "./CartDetails.scss";
 import { TbExposureMinus1 } from "react-icons/tb";
 
 const CartDetails = (props = {}) => {
   const { name = "", image = "", caloriesPerServing = "" } = props,
-    { itemCounts, setItemCounts, filterData, setFilterData, setTotal, total } =
-      useContext(CartContext),
-    handleMinus = useCallback(() => {
-      setItemCounts((prevItemCounts) => {
-        const updatedItemCounts = { ...prevItemCounts };
-        if (updatedItemCounts[props.id]) {
-          updatedItemCounts[props.id] -= 1;
-          setTotal(total - props.caloriesPerServing); // Minus Total value
-          if (updatedItemCounts[props.id] === 0) {
-            setFilterData(filterData.filter((crr) => crr.id !== props.id));
-          }
+    {
+      itemCounts,
+      setItemCounts,
+      cartDara,
+      filterData,
+      setFilterData,
+      setTotal,
+      total,
+    } = useContext(CartContext);
+
+  const handleMinus = useCallback(() => {
+    setItemCounts((prevItemCounts) => {
+      const updatedItemCounts = { ...prevItemCounts };
+      if (updatedItemCounts[props.id]) {
+        updatedItemCounts[props.id] -= 1;
+        setTotal((prevTotal) => prevTotal - props.caloriesPerServing);
+        if (updatedItemCounts[props.id] === 0) {
+          setFilterData(filterData.filter((crr) => crr.id !== props.id));
+          delete updatedItemCounts[props.id];
+          console.log(cartDara, filterData, "couts");
         }
-        return updatedItemCounts;
-      });
-    }, [filterData, setFilterData, setItemCounts, total, setTotal]);
+      }
+      return updatedItemCounts;
+    });
+    console.log(itemCounts, "count");
+  }, [filterData, setFilterData, setTotal]);
 
   return (
     <div>
       <div className="mt-2">
         <div className="container CartList">
           <div className="row">
-            <div className="col-12 p-3 Bill-container d-flex bold align-items-center justify-content-between">
+            <div className="col-12 p-4 Bill-container d-flex bold align-items-center justify-content-between">
               <div className="Bill-Text">
                 <h6>{name}</h6>
               </div>
@@ -38,10 +50,13 @@ const CartDetails = (props = {}) => {
                     {itemCounts[props.id] || 0} x
                   </span>{" "}
                   {caloriesPerServing * itemCounts[props.id]} RS
-                  <TbExposureMinus1
-                    className="mx-2"
+                  <Badge
                     onClick={handleMinus}
-                  ></TbExposureMinus1>
+                    style={{ cursor: "pointer" }}
+                    className="mx-2"
+                  >
+                    <FaMinus className="mx-2"></FaMinus>
+                  </Badge>
                 </h6>
               </div>
             </div>

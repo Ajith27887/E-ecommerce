@@ -13,15 +13,15 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { useCallback, useContext, useEffect, useState } from "react";
 
 function NavScrollExample() {
-  const { cartCount, addToCart, setCartCount, filterData, setShow, show } =
+  const { cartCount, cartData, filterData, setShow, show } =
       useContext(CartContext),
     [animateScooty, setAnimateScooty] = useState(false);
 
-  const handlecartredirect = useCallback(() => {
-    if (cartCount) {
-      setShow(true);
-    }
-  }, [cartCount, setShow]);
+  //   const handlecartredirect = useCallback(() => {
+  //     if (cartCount) {
+  //       setShow(true);
+  //     }
+  //   }, [cartCount, setShow]);
   return (
     <>
       <Navbar expand="lg" className="bg-body-tertiary" fixed="top">
@@ -36,16 +36,16 @@ function NavScrollExample() {
             >
               <Nav.Link href="/Home">Home</Nav.Link>
             </Nav>
-            <div className="mx-2 cart" onClick={handlecartredirect}>
+            <div className="mx-2 cart">
               <Button
                 variant="warning"
                 className={`cartnum ${animateScooty ? "vibration" : ""}  mx-1`}
+                onClick={() =>
+                  filterData.length > 0 ? setShow(true) : setShow(false)
+                }
               >
-                <GrNotes
-                  onClick={() => setShow(true)}
-                  style={{ width: "30px", color: "black" }}
-                />{" "}
-                {cartCount}
+                <GrNotes style={{ width: "30px", color: "black" }} />{" "}
+                {filterData.length}
               </Button>
             </div>
             <Form className="d-flex">

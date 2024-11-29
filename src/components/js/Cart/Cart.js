@@ -20,17 +20,14 @@ const Cart = () => {
     navigate = useNavigate();
 
   useEffect(() => {
+    console.log(total, "total");
+
     if (filterData.length === 0) {
+      setCartData([]);
+      setFilterData([]);
       navigate("/Home");
     }
-  }, [filterData, setCartData, setFilterData, navigate]);
-
-  useEffect(() => {
-    localStorage.setItem("names", JSON.stringify(filterData));
-  }, [filterData]);
-  const local = localStorage.getItem("names");
-  const localArr = JSON.parse(local);
-  console.log(local, "local");
+  }, [filterData, setFilterData, setCartData, navigate]);
 
   useEffect(() => {
     const Total = cartData.reduce(
@@ -38,14 +35,15 @@ const Cart = () => {
       0
     );
     setTotal(Total);
-  }, [cartData, setTotal]);
+    console.log(filterData, "filter");
+
+    if (filterData.length === 0) {
+      setShow(false);
+    }
+  }, [cartData, setTotal, total, filterData]);
 
   return (
     <>
-      {/* <Button variant="primary" >
-        Custom Width Modal
-      </Button> */}
-
       <Modal
         show={show}
         onHide={() => setShow(false)}
@@ -53,8 +51,9 @@ const Cart = () => {
         aria-labelledby="example-custom-modal-styling-title"
       >
         <Modal.Header closeButton>
-          <Modal.Title style={{ color: "white" }}>Food List</Modal.Title>
+          <Modal.Title style={{ color: "white" }}>Shopping Cart</Modal.Title>
         </Modal.Header>
+
         <Modal.Body>
           <Col
             style={{
@@ -62,31 +61,21 @@ const Cart = () => {
               alignItems: "center",
               justifyContent: "center",
             }}
-          >
-            <Badge bg="primary" style={{ fontSize: "20px" }}>
-              Bill
-            </Badge>
-          </Col>
+          ></Col>
           <Container>
+            <div className="price">
+              <p className="mb-3 " style={{ color: "white" }}>
+                price
+              </p>
+            </div>
             <Row>
               <Col>
-                {cartData &&
-                local &&
-                localArr &&
-                filterData &&
-                filterData.length > 0 ? (
-                  localArr.map((data, index) => (
-                    <div className="CarWrapper" key={data.id}>
-                      <div className="mt-2">
-                        <CartDetails {...data} />
-                      </div>
-                    </div>
-                  ))
-                ) : (
-                  <div>
-                    <CartDetails />
+                <div className="CarWrapper">
+                  <div className="mt-2">
+                    {filterData.length > 0 &&
+                      filterData.map((data) => <CartDetails {...data} />)}
                   </div>
-                )}
+                </div>
               </Col>
             </Row>
             <Row>
@@ -100,40 +89,6 @@ const Cart = () => {
       </Modal>
     </>
   );
-
-  // return (
-  //   <div>
-  //     <Container className="mt-4">
-  //       <Row>
-  //         <Col>
-  //           <Badge bg="primary" style={{ fontSize: "20px" }}>
-  //             {" "}
-  //             Total Amount : {total}
-  //           </Badge>
-  //         </Col>
-  //       </Row>
-  //     </Container>
-  //     <Container fluid>
-  //       <Row>
-  //         <Col>
-  //           {cartData && local && filterData && filterData.length > 0 ? (
-  //             localArr.map((data, index) => (
-  //               <div className="CarWrapper" key={index}>
-  //                 <div className="mt-2">
-  //                   <CartDetails {...data} />
-  //                 </div>
-  //               </div>
-  //             ))
-  //           ) : (
-  //             <div>
-  //               <CartDetails />
-  //             </div>
-  //           )}
-  //         </Col>
-  //       </Row>
-  //     </Container>
-  //   </div>
-  // );
 };
 
 export default Cart;

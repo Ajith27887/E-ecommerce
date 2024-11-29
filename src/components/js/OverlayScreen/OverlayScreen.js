@@ -28,17 +28,13 @@ const OverlayScreen = (props = {}) => {
       const updatedItemCounts = { ...prevItemCounts };
       if (updatedItemCounts[props.id]) {
         updatedItemCounts[props.id] -= 1;
-        setTotal(total - props.caloriesPerServing); // Minus Total value
         if (updatedItemCounts[props.id] === 0) {
           setFilterData(filterData.filter((crr) => crr.id !== props.id));
         }
       }
       return updatedItemCounts;
     });
-  }, [filterData, setFilterData, total, setTotal]);
-  // handleHover = () => {
-  //   setDetail(true);
-  // };
+  }, []);
 
   return (
     <IconContext.Provider

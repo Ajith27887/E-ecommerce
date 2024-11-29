@@ -3,7 +3,12 @@ import { useEffect, useState, lazy, Suspense } from "react";
 // import RecipesListing from './components/js/RecipesListing/RecipesListing';
 import Welcome from "./components/js/Welcome/Welcome";
 import axios from "axios";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Cart from "./components/js/Cart/Cart";
 import Lazy from "./components/js/Lazy/Lazy";
@@ -39,23 +44,30 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Welcome />} />
-          <Route
-            path="/Home"
-            element={
-              <Suspense fallback={<Lazy />}>
-                <RecipesListing {...data} />
-              </Suspense>
-            }
-          />
-          <Route path="/cart" element={<Cart />} />
-        </Routes>
-      </div>
+      <AppContent data={data} />
     </Router>
   );
 }
 
+function AppContent({ data }) {
+  const location = useLocation();
+
+  return (
+    <div className="App">
+      {location.pathname !== "/" && <NavBar />}
+      <Routes>
+        <Route path="/" element={<Welcome />} />
+        <Route
+          path="/Home"
+          element={
+            <Suspense fallback={<Lazy />}>
+              <RecipesListing {...data} />
+            </Suspense>
+          }
+        />
+        <Route path="/cart" element={<Cart />} />
+      </Routes>
+    </div>
+  );
+}
 export default App;
