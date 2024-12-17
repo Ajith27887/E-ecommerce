@@ -1,0 +1,6 @@
+.custom-nav-link {
+  color: white !important; /* Change the color to white */
+  &:hover {
+    color: #ff6347 !important; /* Change the color on hover */
+  }
+}

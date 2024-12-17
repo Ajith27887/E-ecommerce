@@ -4,29 +4,25 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { CartContext } from "../Provider/CartProvider";
-import { BsCartCheckFill } from "react-icons/bs";
 import Cart from "../Cart/Cart";
 import { GrNotes } from "react-icons/gr";
 
-import RecipesListing from "../RecipesListing/RecipesListing";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
+import "./NavBar.scss";
 
 function NavScrollExample() {
-  const { cartCount, cartData, filterData, setShow, show } =
-      useContext(CartContext),
+  const { filterData, setShow, show } = useContext(CartContext),
     [animateScooty, setAnimateScooty] = useState(false);
 
-  //   const handlecartredirect = useCallback(() => {
-  //     if (cartCount) {
-  //       setShow(true);
-  //     }
-  //   }, [cartCount, setShow]);
   return (
     <>
-      <Navbar expand="lg" className="bg-body-tertiary" fixed="top">
+      <Navbar
+        expand="lg"
+        style={{ backgroundColor: "rgba(0, 0, 0, 0.5)", color: "white" }}
+        fixed="top"
+      >
         <Container>
-          <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+          {/* <Navbar.Brand href="#">Navbar scroll</Navbar.Brand> */}
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
@@ -34,7 +30,9 @@ function NavScrollExample() {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Nav.Link href="/Home">Home</Nav.Link>
+              <Nav.Link className="custom-nav-link" href="/Home">
+                Home
+              </Nav.Link>
             </Nav>
             <div className="mx-2 cart">
               <Button
