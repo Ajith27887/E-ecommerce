@@ -6,6 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import { CartContext } from "../Provider/CartProvider";
 import Cart from "../Cart/Cart";
 import { GrNotes } from "react-icons/gr";
+import { IoFilterOutline } from "react-icons/io5";
 
 import { useContext, useState } from "react";
 import "./NavBar.scss";
@@ -35,9 +36,13 @@ function NavScrollExample() {
               </Nav.Link>
             </Nav>
             <div className="mx-2 cart">
+              <Button variant="danger" style={{color : "white"}} className={`cartnum mx-1`}
+              >
+                <IoFilterOutline/>
+              </Button>
               <Button
                 variant="warning"
-                className={`cartnum ${animateScooty ? "vibration" : ""}  mx-1`}
+                className={`cartnum mx-1`}
                 onClick={() =>
                   filterData.length > 0 ? setShow(true) : setShow(false)
                 }

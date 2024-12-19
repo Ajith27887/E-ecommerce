@@ -3,6 +3,7 @@ import OverlayScreen from "../OverlayScreen/OverlayScreen";
 import ReactPaginate from "react-paginate";
 import "../RecipesListing/RecipesListing.scss";
 import Banner from "../Banner/Banner";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const RecipesListing = (props = {}) => {
   const { recipes = [], limit = "", total = "", itemsPerPage = 12 } = props,
@@ -41,10 +42,11 @@ const RecipesListing = (props = {}) => {
                           src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAJCAQAAACRI2S5AAAAEElEQVR42mNkIAAYRxWAAQAG9gAKqv6+AwAAAABJRU5ErkJggg=="
                           style={{ width: "100%" }}
                         />
-                        <img
+                        <LazyLoadImage
                           src={data.image}
                           onMouseEnter={() => handlehover(data.id)}
                           className="recipes"
+                          effect="blur"
                           style={{ width: "100%" }}
                         />
                         {hover === data.id && <OverlayScreen {...data} />}
