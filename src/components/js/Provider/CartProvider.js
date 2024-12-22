@@ -9,7 +9,8 @@ const CartProvider = ({ children }) => {
     [itemCounts, setItemCounts] = useState({}),
     [filterData, setFilterData] = useState([]),
     [show, setShow] = useState(false),
-    [total, setTotal] = useState(0);
+    [total, setTotal] = useState(0),
+    [foodfilter, setFoodfilter] = useState("All");
 
   const filterDataContainer = cartData.filter(
     (crr, index) => cartData.indexOf(crr) === index
@@ -38,6 +39,8 @@ const CartProvider = ({ children }) => {
     <CartContext.Provider
       value={{
         cartData,
+        setFoodfilter,
+        foodfilter,
         setTotal,
         show,
         setShow,

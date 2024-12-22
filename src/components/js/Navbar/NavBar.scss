@@ -4,3 +4,7 @@
     color: #ff6347 !important; /* Change the color on hover */
   }
 }
+
+.dropdown-menu[data-bs-popper] {
+  top: 105%;
+}

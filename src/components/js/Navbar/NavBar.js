@@ -7,13 +7,21 @@ import { CartContext } from "../Provider/CartProvider";
 import Cart from "../Cart/Cart";
 import { GrNotes } from "react-icons/gr";
 import { IoFilterOutline } from "react-icons/io5";
+import Dropdown from "react-bootstrap/Dropdown";
+import { MdFreeBreakfast } from "react-icons/md";
+import { MdLunchDining } from "react-icons/md";
+import { MdDinnerDining } from "react-icons/md";
 
 import { useContext, useState } from "react";
 import "./NavBar.scss";
 
 function NavScrollExample() {
-  const { filterData, setShow, show } = useContext(CartContext),
-    [animateScooty, setAnimateScooty] = useState(false);
+  const { filterData, setShow, show, setFoodfilter, foodfilter } =
+    useContext(CartContext);
+
+  const filterFood = (value) => {
+    setFoodfilter(value);
+  };
 
   return (
     <>
@@ -36,9 +44,45 @@ function NavScrollExample() {
               </Nav.Link>
             </Nav>
             <div className="mx-2 cart">
-              <Button variant="danger" style={{color : "white"}} className={`cartnum mx-1`}
+              <Button
+                variant="none"
+                style={{ color: "white", border: "none" }}
+                className={`cartnum mx-1`}
               >
-                <IoFilterOutline/>
+                <Dropdown>
+                  <Dropdown.Toggle variant="danger" id="dropdown-basic">
+                    <IoFilterOutline id="dropdown-basic" />
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item
+                      className={foodfilter === "All" ? "active" : ""}
+                      onClick={() => filterFood("All")}
+                    >
+                      All
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      className={foodfilter === "Breakfast" ? "active" : ""}
+                      onClick={() => filterFood("Breakfast")}
+                      href="#/action-1"
+                    >
+                      Breakfast <MdFreeBreakfast />
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      onClick={() => filterFood("Lunch")}
+                      className={foodfilter === "Lunch" ? "active" : ""}
+                      href="#/action-2"
+                    >
+                      Lunch <MdLunchDining />
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      className={foodfilter === "Dinner" ? "active" : ""}
+                      onClick={() => filterFood("Dinner")}
+                    >
+                      Dinner
+                      <MdDinnerDining />
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
               </Button>
               <Button
                 variant="warning"

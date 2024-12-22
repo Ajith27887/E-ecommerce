@@ -1,9 +1,8 @@
 import { useContext, useCallback } from "react";
 import { CartContext } from "../Provider/CartProvider";
 import { FaMinus } from "react-icons/fa";
-import { Badge, Button } from "react-bootstrap";
+import { Badge } from "react-bootstrap";
 import "./CartDetails.scss";
-import { TbExposureMinus1 } from "react-icons/tb";
 
 const CartDetails = (props = {}) => {
   const { name = "", image = "", caloriesPerServing = "" } = props,
@@ -43,7 +42,7 @@ const CartDetails = (props = {}) => {
               <div className="Bill-Text">
                 <h6>{name}</h6>
               </div>
-              <div className="d-flex align-items-center">
+              <div className="d-flex align-items-baseline">
                 <h6>
                   {" "}
                   <span className="multiple mx-3">
