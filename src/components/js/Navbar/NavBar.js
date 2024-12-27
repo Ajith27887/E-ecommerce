@@ -63,14 +63,12 @@ function NavScrollExample() {
                     <Dropdown.Item
                       className={foodfilter === "Breakfast" ? "active" : ""}
                       onClick={() => filterFood("Breakfast")}
-                      href="#/action-1"
                     >
                       Breakfast <MdFreeBreakfast />
                     </Dropdown.Item>
                     <Dropdown.Item
                       onClick={() => filterFood("Lunch")}
                       className={foodfilter === "Lunch" ? "active" : ""}
-                      href="#/action-2"
                     >
                       Lunch <MdLunchDining />
                     </Dropdown.Item>
