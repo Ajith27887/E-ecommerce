@@ -57,12 +57,12 @@ const OverlayScreen = (props = {}) => {
           <div className="badges">{tags[0]}</div>
           <div>
             {" "}
-            {itemCounts && (
+            {/* {itemCounts && (
               <FaMinus
                 onClick={handleMinus}
                 style={{ width: "20px", height: "20px" }}
               />
-            )}
+            )} */}
           </div>
         </div>
         {detail && <Detailpage {...props} show={show} setShow={setShow} />}
