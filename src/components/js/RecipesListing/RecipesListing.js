@@ -7,15 +7,21 @@ import { CartContext } from "../Provider/CartProvider";
 import Bill from "../BillDetails/Bill";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { MdFreeBreakfast } from "react-icons/md";
+import { MdLunchDining } from "react-icons/md";
+import { MdDinnerDining } from "react-icons/md";
 
 const RecipesListing = (props = {}) => {
   const { recipes = [], limit = "", total = "", itemsPerPage = 12 } = props,
     [hover, setHover] = useState(0),
     [filteredRecipes, setFilteredRecipes] = useState(recipes),
     [loading, setLoading] = useState(true),
-    { foodfilter } = useContext(CartContext),
+    { foodfilter, setFoodfilter } = useContext(CartContext),
     handlehover = (id) => {
       setHover(id);
+    },
+    filterFood = (value) => {
+      setFoodfilter(value);
     };
 
   useEffect(() => {
@@ -32,7 +38,42 @@ const RecipesListing = (props = {}) => {
       <Banner />
       <div className="container-fluid">
         <div className="row">
-          <div className="col-9">
+          <div className="col-12 col-md-3 p-3">
+            <Bill />
+            <div className="row bill mt-5">
+              <div>
+                <h5>Filter</h5>
+                <div>
+                  <div
+                    className={foodfilter === "All" ? "active" : ""}
+                    onClick={() => filterFood("All")}
+                  >
+                    All
+                  </div>
+                  <div
+                    className={foodfilter === "Breakfast" ? "active" : ""}
+                    onClick={() => filterFood("Breakfast")}
+                  >
+                    Breakfast <MdFreeBreakfast />
+                  </div>
+                  <div
+                    onClick={() => filterFood("Lunch")}
+                    className={foodfilter === "Lunch" ? "active" : ""}
+                  >
+                    Lunch <MdLunchDining />
+                  </div>
+                  <div
+                    className={foodfilter === "Dinner" ? "active" : ""}
+                    onClick={() => filterFood("Dinner")}
+                  >
+                    Dinner
+                    <MdDinnerDining />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-12 col-md-9">
             <div className="recipes-container">
               <div className="row">
                 {loading
@@ -82,9 +123,6 @@ const RecipesListing = (props = {}) => {
 			  containerClassName={"pagination"}
 			  activeClassName={"active"}
 			/> */}
-          </div>
-          <div className="col-3 p-3">
-            <Bill />
           </div>
         </div>
       </div>

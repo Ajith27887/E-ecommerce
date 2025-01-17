@@ -11,13 +11,31 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { MdFreeBreakfast } from "react-icons/md";
 import { MdLunchDining } from "react-icons/md";
 import { MdDinnerDining } from "react-icons/md";
+import { auth } from "../Firebase/firebase";
+import { useNavigate } from "react-router-dom";
+import { useCallback, useContext, useEffect, useState } from "react";
 
-import { useContext, useState } from "react";
 import "./NavBar.scss";
 
 function NavScrollExample() {
   const { filterData, setShow, show, setFoodfilter, foodfilter } =
-    useContext(CartContext);
+      useContext(CartContext),
+    navigate = useNavigate();
+
+  const logout = useCallback(() => {
+    auth.signOut();
+    navigate("/");
+  }, []);
+
+  const user = auth.currentUser;
+  let displayName;
+  let photoURL;
+  let uid;
+  if (user !== null) {
+    displayName = user.displayName;
+    photoURL = user.photoURL;
+    uid = user.uid;
+  }
 
   const filterFood = (value) => {
     setFoodfilter(value);
@@ -50,7 +68,7 @@ function NavScrollExample() {
                 className={`cartnum mx-1`}
               >
                 <Dropdown>
-                  <Dropdown.Toggle variant="danger" id="dropdown-basic">
+                  <Dropdown.Toggle variant="dark" id="dropdown-basic">
                     <IoFilterOutline id="dropdown-basic" />
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
@@ -93,15 +111,28 @@ function NavScrollExample() {
                 {filterData.length}
               </Button>
             </div>
-            <Form className="d-flex">
-              <Form.Control
+            <Form className="d-flex align-items-end">
+              {/* <Form.Control
                 type="search"
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
+              /> */}
+              {/* <Button className="mx-2" variant="success">
+                Search
+              </Button> */}
+              <img
+                src={photoURL}
+                alt="photo"
+                className="rounded-circle"
+                style={{ width: "50px" }}
               />
-              <Button variant="outline-success">Search</Button>
+              <p className="mx-2">{displayName}</p>
             </Form>
+            <Button variant="danger" onClick={logout}>
+              {" "}
+              Logout{" "}
+            </Button>
           </Navbar.Collapse>
         </Container>
       </Navbar>

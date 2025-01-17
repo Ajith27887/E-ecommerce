@@ -4,6 +4,7 @@ import { TbMoodEmpty } from "react-icons/tb";
 import { CiShoppingCart } from "react-icons/ci";
 
 import "./Bill.scss";
+import { Button } from "react-bootstrap";
 
 const Bill = () => {
   const { filterData, total, cartData, setTotal, setShow } =
@@ -48,6 +49,10 @@ const Bill = () => {
           <div className="Total bill mt-3">
             <b>Total Amount</b>
             <b>{discount ? total - discount : total}</b>
+          </div>
+
+          <div className="d-flex justify-content-end">
+            <Button className="mt-3 w-25">Buy</Button>
           </div>
         </>
       ) : (

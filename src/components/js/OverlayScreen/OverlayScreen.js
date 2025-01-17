@@ -1,5 +1,4 @@
 import { useState, useContext, useCallback } from "react";
-import { FaMinus } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import { CartContext } from "../Provider/CartProvider";
 import { GoPlus } from "react-icons/go";
@@ -7,7 +6,6 @@ import Detailpage from "../Detailpage/Detailpage";
 import { MdExposurePlus1 } from "react-icons/md";
 
 import "./OverlayScreen.scss";
-import Button from "react-bootstrap/Button";
 import { ModalContext } from "../Provider/ModalProvider";
 
 const OverlayScreen = (props = {}) => {
@@ -54,15 +52,12 @@ const OverlayScreen = (props = {}) => {
               <MdExposurePlus1 style={{ width: "20px", color: "white" }} />
             </div>
           </div>
-          <div className="badges">{tags[0]}</div>
-          <div>
-            {" "}
-            {/* {itemCounts && (
-              <FaMinus
-                onClick={handleMinus}
-                style={{ width: "20px", height: "20px" }}
-              />
-            )} */}
+          <div
+            className="badges"
+            style={{ cursor: "pointer" }}
+            onClick={handleCart}
+          >
+            {tags[0]}
           </div>
         </div>
         {detail && <Detailpage {...props} show={show} setShow={setShow} />}
